@@ -1,316 +1,283 @@
 # AI Wiki Quiz Generator
 
-A full-stack application that transforms Wikipedia articles into engaging, AI-generated quizzes using FastAPI, Google Gemini, and React.
+## 📌 Project Overview
+A full-stack application that transforms Wikipedia articles into AI-generated quizzes using FastAPI, Google Gemini, and React.
 
-## Features
+## 🛠️ Tech Stack
 
-- 🤖 *AI-Powered Quiz Generation*: Uses Google Gemini to create intelligent quizzes
-- 📚 *Wikipedia Integration*: Scrapes and processes Wikipedia articles
-- 💾 *SQLite Database*: Stores quiz history and generated content
-- 🎨 *Beautiful UI*: Clean, modern interface built with React and Tailwind CSS
-- 📊 *Quiz History*: View and access all previously generated quizzes
-- ✅ *Structured Output*: Questions with multiple choice, difficulty levels, and explanations
+### Backend
+- **Python 3.10+**
+- **FastAPI** - REST API framework
+- **SQLAlchemy** - Database ORM
+- **SQLite** - Database
+- **BeautifulSoup4** - Web scraping
+- **LangChain** - LLM framework
+- **Google Gemini 2.5 Flash** - AI model
 
-## Project Structure
+### Frontend
+- **React 18** - UI framework
+- **Tailwind CSS** - Styling
+- **Vite** - Build tool
 
-
-ai-quiz-generator/
-├── backend/
-│   ├── database.py              # SQLAlchemy database models
-│   ├── models.py                # Pydantic schemas for validation
-│   ├── scraper.py               # Wikipedia scraping logic
-│   ├── llm_quiz_generator.py   # AI quiz generation with LangChain
-│   ├── main.py                  # FastAPI application and endpoints
-│   ├── requirements.txt         # Python dependencies
-│   └── .env                     # Environment variables (API keys)
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── QuizDisplay.jsx  # Reusable quiz display component
-    │   │   └── Modal.jsx         # Modal component for quiz details
-    │   ├── services/
-    │   │   └── api.js            # API communication functions
-    │   ├── tabs/
-    │   │   ├── GenerateQuizTab.jsx
-    │   │   └── HistoryTab.jsx
-    │   ├── App.jsx               # Main application component
-    │   ├── main.jsx              # React entry point
-    │   └── index.css             # Tailwind styles
-    ├── index.html
-    ├── package.json
-    └── tailwind.config.js
-
-
-## Installation & Setup
-
-### Prerequisites
-
-- Python 3.10+
-- Node.js 18+ and npm
-- Google Gemini API Key
+## 📦 Installation & Setup
 
 ### Backend Setup
 
-1. *Create project directory and navigate to backend:*
-bash
-mkdir ai-quiz-generator
-cd ai-quiz-generator
-mkdir backend
+1. **Navigate to backend folder:**
+```bash
 cd backend
+```
 
-
-2. *Create and activate virtual environment:*
-bash
-# Windows
+2. **Create virtual environment:**
+```bash
 python -m venv venv
-venv\Scripts\activate
+```
 
-# Mac/Linux
-python3 -m venv venv
-source venv/bin/activate
+3. **Activate virtual environment:**
+   - Windows: `venv\Scripts\activate`
+   - Mac/Linux: `source venv/bin/activate`
 
-
-3. *Install dependencies:*
-bash
+4. **Install dependencies:**
+```bash
 pip install -r requirements.txt
+```
 
+5. **Create `.env` file:**
+```env
+GEMINI_API_KEY=your_api_key_here
+```
 
-4. **Create .env file with your API key:**
-env
-GEMINI_API_KEY=your_gemini_api_key_here
+6. **Get Gemini API Key:**
+   - Visit: https://aistudio.google.com/app/apikey
+   - Create a new API key
+   - Add to `.env` file
 
-
-Get your free API key from: https://makersuite.google.com/app/apikey
+7. **Run the backend server:**
+```bash
+python main.py
+```
+Backend will run on: http://localhost:8000
 
 ### Frontend Setup
 
-1. *Navigate to project root and create frontend:*
-bash
-cd ..
-npm create vite@latest frontend -- --template react
+1. **Navigate to frontend folder:**
+```bash
 cd frontend
+```
 
-
-2. *Install dependencies:*
-bash
+2. **Install dependencies:**
+```bash
 npm install
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+```
 
-
-## Running the Application
-
-### Start Backend (Terminal 1)
-
-bash
-cd backend
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-uvicorn main:app --reload --port 8000
-
-
-Backend API: http://localhost:8000
-
-### Start Frontend (Terminal 2)
-
-bash
-cd frontend
+3. **Run development server:**
+```bash
 npm run dev
+```
+Frontend will run on: http://localhost:5173
 
+## 🚀 Usage
 
-Frontend UI: http://localhost:5173
+1. **Start Backend:** Run `python main.py` in backend folder
+2. **Start Frontend:** Run `npm run dev` in frontend folder
+3. **Open Browser:** Navigate to http://localhost:5173
+4. **Generate Quiz:**
+   - Go to "Generate Quiz" tab
+   - Enter Wikipedia URL (e.g., https://en.wikipedia.org/wiki/Python_(programming_language))
+   - Click "Generate Quiz"
+   - Wait 20-30 seconds
+5. **View History:**
+   - Go to "Quiz History" tab
+   - See all generated quizzes
+   - Click "View Details" to see full quiz
 
-## API Endpoints
+## 📡 API Endpoints
 
-### 1. Generate Quiz
-*POST* /generate_quiz
+### `POST /generate_quiz`
+Generates a quiz from a Wikipedia URL.
 
-*Request:*
-json
+**Request Body:**
+```json
 {
   "url": "https://en.wikipedia.org/wiki/Python_(programming_language)"
 }
+```
 
-
-*Response:*
-json
+**Response:**
+```json
 {
   "id": 1,
-  "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
-  "title": "Python (programming language)",
-  "summary": "Brief summary...",
-  "key_entities": {
-    "people": ["Guido van Rossum"],
-    "organizations": ["Python Software Foundation"],
-    "locations": ["Netherlands"]
-  },
-  "sections": ["History", "Features", "Syntax"],
-  "quiz": [
-    {
-      "question": "Who created Python?",
-      "options": ["Guido van Rossum", "James Gosling", "Dennis Ritchie", "Bjarne Stroustrup"],
-      "answer": "Guido van Rossum",
-      "difficulty": "easy",
-      "explanation": "Python was created by Guido van Rossum in 1991."
-    }
-  ],
-  "related_topics": ["Programming language", "Software development"],
-  "date_generated": "2024-01-15T10:30:00"
+  "url": "...",
+  "title": "...",
+  "summary": "...",
+  "key_entities": {...},
+  "sections": [...],
+  "quiz": [...],
+  "related_topics": [...],
+  "date_generated": "..."
 }
+```
 
+### `GET /history`
+Returns list of all generated quizzes.
 
-### 2. Get Quiz History
-*GET* /history
-
-*Response:*
-json
+**Response:**
+```json
 [
   {
     "id": 1,
-    "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
-    "title": "Python (programming language)",
-    "date_generated": "2024-01-15T10:30:00"
+    "url": "...",
+    "title": "...",
+    "date_generated": "..."
   }
 ]
+```
 
+### `GET /quiz/{quiz_id}`
+Returns detailed quiz data by ID.
 
-### 3. Get Quiz Details
-*GET* /quiz/{quiz_id}
+**Response:** Same as `/generate_quiz`
 
-Returns complete quiz data for a specific ID.
+## 🎯 Features Implemented
 
-## Testing the Application
+### Required Features ✅
+- [x] Wikipedia URL scraping with BeautifulSoup
+- [x] AI quiz generation using Gemini API via LangChain
+- [x] SQLite database for storage
+- [x] FastAPI backend with 3 endpoints
+- [x] React frontend with 2 tabs
+- [x] Structured quiz display
+- [x] Quiz history with details modal
+- [x] Error handling for invalid URLs
+- [x] Loading states and user feedback
 
-### Recommended Wikipedia URLs for Testing:
+### Bonus Features ✅
+- [x] **Take Quiz Mode** - Interactive quiz with scoring
+- [x] **URL Validation** - Frontend and backend validation
+- [x] **Store Raw Content** - Scraped HTML stored in database
+- [x] **Responsive Design** - Mobile-friendly UI
+- [x] **Mode Toggle** - Switch between View and Take Quiz modes
+- [x] **Progress Tracking** - Shows answered questions count
+- [x] **Retry Quiz** - Reset and retake quiz
 
-1. *Computer Science:*
-   - https://en.wikipedia.org/wiki/Python_(programming_language)
-   - https://en.wikipedia.org/wiki/Artificial_intelligence
-   - https://en.wikipedia.org/wiki/Machine_learning
+## 📊 Sample Data
 
-2. *History:*
-   - https://en.wikipedia.org/wiki/World_War_II
-   - https://en.wikipedia.org/wiki/Ancient_Rome
+Test with these Wikipedia URLs:
+1. https://en.wikipedia.org/wiki/Python_(programming_language)
+2. https://en.wikipedia.org/wiki/Artificial_intelligence
+3. https://en.wikipedia.org/wiki/Machine_learning
+4. https://en.wikipedia.org/wiki/Albert_Einstein
+5. https://en.wikipedia.org/wiki/World_War_II
 
-3. *Science:*
-   - https://en.wikipedia.org/wiki/Quantum_mechanics
-   - https://en.wikipedia.org/wiki/Theory_of_relativity
+## 🧪 Testing Steps
 
-4. *Biography:*
-   - https://en.wikipedia.org/wiki/Albert_Einstein
-   - https://en.wikipedia.org/wiki/Marie_Curie
+1. **Test Quiz Generation:**
+   - Enter valid Wikipedia URL
+   - Verify quiz generates within 30 seconds
+   - Check all components display correctly
 
-### Expected Behavior:
+2. **Test History:**
+   - Generate multiple quizzes
+   - Navigate to History tab
+   - Verify all quizzes listed
+   - Click "View Details" on each
 
-1. Enter a Wikipedia URL in Tab 1
-2. Click "Generate Quiz"
-3. Wait 20-30 seconds for AI processing
-4. View generated quiz with:
-   - Article summary
-   - Key entities (people, organizations, locations)
-   - 5-10 questions with difficulty levels
-   - Explanations for each answer
-   - Related topics for further reading
-5. Switch to Tab 2 to see quiz history
-6. Click "View Details" to see any past quiz
+3. **Test Take Quiz Mode:**
+   - Generate a quiz
+   - Click "Take Quiz Mode"
+   - Answer questions
+   - Submit and verify score
+   - Retry quiz
 
-## Technologies Used
+4. **Test Error Handling:**
+   - Enter invalid URL
+   - Verify error message shows
+   - Enter non-Wikipedia URL
+   - Verify validation works
 
-### Backend
-- *FastAPI*: Modern, fast web framework for building APIs
-- *SQLAlchemy*: SQL toolkit and ORM
-- *BeautifulSoup4*: Web scraping library
-- *LangChain*: Framework for LLM applications
-- *Google Gemini*: AI model for quiz generation
-- *Pydantic*: Data validation using Python type hints
+## 🎨 LangChain Prompt Template
 
-### Frontend
-- *React*: UI library for building user interfaces
-- *Vite*: Next-generation frontend tooling
-- *Tailwind CSS*: Utility-first CSS framework
+The prompt used for quiz generation is defined in `llm_quiz_generator.py`:
+```python
+prompt_template = """You are an expert educational content creator...
 
-### Database
-- *SQLite*: Lightweight file-based database
+ARTICLE TITLE: {title}
+ARTICLE CONTENT: {article_text}
 
-## Key Features Implementation
+Generate a structured quiz with:
+1. Summary (2-3 sentences)
+2. Key Entities (people, organizations, locations)
+3. Sections (3-5 main topics)
+4. Quiz Questions (5-10 questions)
+5. Related Topics (3-5 suggestions)
 
-### 1. Prompt Engineering
-The LLM prompt is carefully designed to:
-- Extract structured information from unstructured text
-- Generate diverse questions with varying difficulty
-- Minimize hallucination by grounding in article content
-- Produce consistent JSON output
+CRITICAL INSTRUCTIONS:
+- Base ALL questions on article content
+- No hallucination
+- 4 options per question (A-D)
+- Varying difficulty levels
+- Clear explanations
+..."""
+```
 
-### 2. Error Handling
-- URL validation (must be English Wikipedia)
-- Network error handling for scraping
-- LLM generation failures
-- Database transaction errors
-- Clear user feedback for all error states
+## 🔧 Environment Variables
 
-### 3. Data Persistence
-- All quizzes stored in SQLite database
-- Full quiz data serialized as JSON
-- Historical access to all generated quizzes
+Create `.env` file in backend folder:
+```env
+GEMINI_API_KEY=your_actual_api_key_here
+```
 
-### 4. UI/UX Design
-- Clean, minimal interface
-- Loading states for async operations
-- Responsive design for all screen sizes
-- Color-coded difficulty levels
-- Modal for detailed quiz viewing
+## 📝 Database Schema
 
-## Troubleshooting
+**Quiz Table:**
+- `id` (Integer, Primary Key)
+- `url` (String, Not Null)
+- `title` (String, Not Null)
+- `date_generated` (DateTime, Default: now)
+- `scraped_content` (Text, Nullable)
+- `full_quiz_data` (Text, Not Null) - JSON string
+
+## 🐛 Troubleshooting
 
 ### Backend Issues
 
-*Port 8000 already in use:*
-bash
-uvicorn main:app --reload --port 8001
+**Problem:** API key not found
+**Solution:** 
+- Ensure `.env` file exists in backend folder
+- Check `GEMINI_API_KEY` is spelled correctly
+- Restart backend server
 
-Update API_BASE_URL in frontend/src/services/api.js to match.
+**Problem:** Import errors
+**Solution:**
+- Activate virtual environment
+- Run `pip install -r requirements.txt`
+- Check Python version (3.10+)
 
-*CORS errors:*
-Ensure CORS middleware in main.py includes your frontend URL.
-
-*API key errors:*
-Verify .env file exists in backend folder with correct key.
+**Problem:** Model not found error
+**Solution:**
+- Update model name to `models/gemini-2.5-flash`
+- Check API key is valid
 
 ### Frontend Issues
 
-*API connection failed:*
-- Check backend is running on port 8000
-- Verify API_BASE_URL in api.js
+**Problem:** Network error
+**Solution:**
+- Ensure backend is running on port 8000
+- Check CORS configuration
+- Verify frontend API_BASE_URL
 
-*Build errors:*
-bash
-rm -rf node_modules package-lock.json
-npm install
+**Problem:** Build errors
+**Solution:**
+- Delete `node_modules` and `package-lock.json`
+- Run `npm install` again
+- Check Node.js version
 
+## 👥 Author
+[Your Name]
+[Your Email/Contact]
 
-## Database Schema
+## 📅 Date
+[Submission Date]
 
-### Quiz Table
-- id: Primary key (Integer)
-- url: Wikipedia URL (String)
-- title: Article title (String)
-- date_generated: Timestamp (DateTime)
-- scraped_content: Raw article text (Text)
-- full_quiz_data: Complete quiz JSON (Text)
-
-## Future Enhancements
-
-- [ ] "Take Quiz" mode with scoring
-- [ ] URL validation and preview
-- [ ] Caching to prevent duplicate scraping
-- [ ] Section-wise question grouping
-- [ ] Export quiz as PDF
-- [ ] Multiple language support
-- [ ] User authentication and profiles
-
-## License
-
-This project is created for educational purposes as part of the DeepKlarity assignment.
-
-## Contact
-
-For questions or issues, please create an issue in the repository.
+## 📄 License
+This project is for educational purposes as part of [Course Name/Assignment].
