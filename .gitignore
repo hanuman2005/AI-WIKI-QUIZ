@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+
+# Database
+*.db
+quiz_history.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+dist/
+build/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+```
+
+---
+
+## **8. Final Folder Structure for Submission**
+```
+ai-quiz-generator/
+├── backend/
+│   ├── database.py
+│   ├── models.py
+│   ├── scraper.py
+│   ├── llm_quiz_generator.py
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── .env.example
+│   └── .gitignore
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Modal.jsx
+│   │   │   └── QuizDisplay.jsx
+│   │   ├── services/
+│   │   │   └── api.js
+│   │   ├── tabs/
+│   │   │   ├── GenerateQuizTab.jsx
+│   │   │   └── HistoryTab.jsx
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   └── vite.config.js
+├── screenshots/
+│   ├── 01_quiz_generation_page.png
+│   ├── 02_loading_state.png
+│   ├── 03_generated_quiz_view_mode.png
+│   ├── 04_history_tab.png
+│   ├── 05_details_modal.png
+│   ├── 06_take_quiz_mode.png
+│   ├── 07_quiz_submitted.png
+│   ├── 08_error_handling.png
+│   ├── 09_database_view.png
+│   └── 10_api_docs.png
+├── sample_data/
+│   ├── tested_urls.txt
+│   ├── python_quiz.json
+│
+├── README.md
+└── .gitignore

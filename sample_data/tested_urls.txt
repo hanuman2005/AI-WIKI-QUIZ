@@ -1,0 +1,31 @@
+# Successfully Tested Wikipedia URLs
+
+1. Python (Programming Language)
+   URL: https://en.wikipedia.org/wiki/Python_(programming_language)
+   Status: ✅ Success
+   Generation Time: ~25 seconds
+   Questions Generated: 9
+
+2. Artificial Intelligence
+   URL: https://en.wikipedia.org/wiki/Artificial_intelligence
+   Status: ✅ Success
+   Generation Time: ~28 seconds
+   Questions Generated: 8
+
+3. Machine Learning
+   URL: https://en.wikipedia.org/wiki/Machine_learning
+   Status: ✅ Success
+   Generation Time: ~22 seconds
+   Questions Generated: 10
+
+4. Albert Einstein
+   URL: https://en.wikipedia.org/wiki/Albert_Einstein
+   Status: ✅ Success
+   Generation Time: ~26 seconds
+   Questions Generated: 9
+
+5. World War II
+   URL: https://en.wikipedia.org/wiki/World_War_II
+   Status: ✅ Success
+   Generation Time: ~30 seconds
+   Questions Generated: 10
