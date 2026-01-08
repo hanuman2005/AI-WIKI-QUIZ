@@ -273,8 +273,9 @@ GEMINI_API_KEY=your_actual_api_key_here
 - Check Node.js version
 
 ## 👥 Author
-[Your Name]
-[Your Email/Contact]
+[Madineni Hanumantha Rao]
+[madenenihanumanturao@gmail.com]
+[9392852185]
 
 ## 📅 Date
 [Submission Date]

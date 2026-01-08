@@ -55,19 +55,19 @@ const QuizDisplay = ({ quizData }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold mb-2">{quizData.title}</h2>
-        <p className="text-blue-100">{quizData.summary}</p>
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 sm:p-6 rounded-lg shadow-lg">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">{quizData.title}</h2>
+        <p className="text-blue-100 text-sm sm:text-base">{quizData.summary}</p>
       </div>
 
       {/* Mode Toggle Buttons */}
-      <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
-        <div className="flex gap-4 justify-center">
+      <div className="bg-white p-3 sm:p-4 rounded-lg shadow-md border border-gray-200">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
           <button
             onClick={() => handleModeSwitch('view')}
-            className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors text-sm sm:text-base ${
               quizMode === 'view'
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -77,7 +77,7 @@ const QuizDisplay = ({ quizData }) => {
           </button>
           <button
             onClick={() => handleModeSwitch('take')}
-            className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors text-sm sm:text-base ${
               quizMode === 'take'
                 ? 'bg-green-600 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -90,35 +90,35 @@ const QuizDisplay = ({ quizData }) => {
 
       {/* Key Entities Section */}
       {quizData.key_entities && (
-        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-          <h3 className="text-xl font-semibold mb-4 text-gray-800">Key Entities</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
+          <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Key Entities</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {quizData.key_entities.people?.length > 0 && (
               <div>
-                <h4 className="font-medium text-blue-600 mb-2">👤 People</h4>
+                <h4 className="font-medium text-blue-600 mb-2 text-sm sm:text-base">👤 People</h4>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   {quizData.key_entities.people.map((person, idx) => (
-                    <li key={idx} className="text-sm">{person}</li>
+                    <li key={idx} className="text-xs sm:text-sm">{person}</li>
                   ))}
                 </ul>
               </div>
             )}
             {quizData.key_entities.organizations?.length > 0 && (
               <div>
-                <h4 className="font-medium text-green-600 mb-2">🏢 Organizations</h4>
+                <h4 className="font-medium text-green-600 mb-2 text-sm sm:text-base">🏢 Organizations</h4>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   {quizData.key_entities.organizations.map((org, idx) => (
-                    <li key={idx} className="text-sm">{org}</li>
+                    <li key={idx} className="text-xs sm:text-sm">{org}</li>
                   ))}
                 </ul>
               </div>
             )}
             {quizData.key_entities.locations?.length > 0 && (
               <div>
-                <h4 className="font-medium text-purple-600 mb-2">📍 Locations</h4>
+                <h4 className="font-medium text-purple-600 mb-2 text-sm sm:text-base">📍 Locations</h4>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   {quizData.key_entities.locations.map((loc, idx) => (
-                    <li key={idx} className="text-sm">{loc}</li>
+                    <li key={idx} className="text-xs sm:text-sm">{loc}</li>
                   ))}
                 </ul>
               </div>
@@ -129,13 +129,13 @@ const QuizDisplay = ({ quizData }) => {
 
       {/* Sections */}
       {quizData.sections?.length > 0 && (
-        <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-          <h3 className="text-xl font-semibold mb-3 text-gray-800">Article Sections</h3>
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
+          <h3 className="text-lg sm:text-xl font-semibold mb-3 text-gray-800">Article Sections</h3>
           <div className="flex flex-wrap gap-2">
             {quizData.sections.map((section, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium"
+                className="px-2 sm:px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-medium"
               >
                 {section}
               </span>
@@ -146,25 +146,25 @@ const QuizDisplay = ({ quizData }) => {
 
       {/* Quiz Questions */}
       {quizData.quiz?.length > 0 && (
-        <div className="space-y-4">
-          <h3 className="text-2xl font-bold text-gray-800">Quiz Questions</h3>
+        <div className="space-y-3 sm:space-y-4">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Quiz Questions</h3>
 
           {/* Score Display (Take Quiz Mode - After Submission) */}
           {quizMode === 'take' && submitted && (
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg shadow-md border-2 border-green-300">
-              <h4 className="text-2xl font-bold text-green-700 mb-2">
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 sm:p-6 rounded-lg shadow-md border-2 border-green-300">
+              <h4 className="text-xl sm:text-2xl font-bold text-green-700 mb-2">
                 🎉 Quiz Completed!
               </h4>
-              <p className="text-xl text-gray-800">
+              <p className="text-lg sm:text-xl text-gray-800">
                 Your Score: <span className="font-bold text-green-600">{score}</span> out of{' '}
                 <span className="font-bold">{quizData.quiz.length}</span>
               </p>
-              <p className="text-lg text-gray-600 mt-2">
+              <p className="text-base sm:text-lg text-gray-600 mt-2">
                 Percentage: {((score / quizData.quiz.length) * 100).toFixed(1)}%
               </p>
               <button
                 onClick={handleResetQuiz}
-                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                className="mt-3 sm:mt-4 px-4 sm:px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold text-sm sm:text-base"
               >
                 🔄 Retake Quiz
               </button>
@@ -175,14 +175,14 @@ const QuizDisplay = ({ quizData }) => {
           {quizData.quiz.map((question, idx) => (
             <div
               key={idx}
-              className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h4 className="text-lg font-semibold text-gray-800 flex-1">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3 sm:mb-4">
+                <h4 className="text-base sm:text-lg font-semibold text-gray-800 flex-1">
                   {idx + 1}. {question.question}
                 </h4>
                 <span
-                  className={`ml-4 px-3 py-1 rounded-full text-xs font-semibold ${getDifficultyColor(
+                  className={`self-start px-2 sm:px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getDifficultyColor(
                     question.difficulty
                   )}`}
                 >
@@ -191,7 +191,7 @@ const QuizDisplay = ({ quizData }) => {
               </div>
 
               {/* Options */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-4">
                 {question.options?.map((option, optIdx) => {
                   const isCorrect = option === question.answer;
                   const isSelected = userAnswers[idx] === option;
@@ -228,14 +228,14 @@ const QuizDisplay = ({ quizData }) => {
                       className={optionClass}
                       onClick={() => handleAnswerSelect(idx, option)}
                     >
-                      <span className="font-medium text-gray-700">
+                      <span className="font-medium text-gray-700 text-sm sm:text-base">
                         {String.fromCharCode(65 + optIdx)}. {option}
                       </span>
                       {showResult && isCorrect && (
-                        <span className="ml-2 text-green-600 font-semibold">✓ Correct</span>
+                        <span className="ml-1 sm:ml-2 text-green-600 font-semibold text-xs sm:text-sm">✓ Correct</span>
                       )}
                       {quizMode === 'take' && submitted && isSelected && !isCorrect && (
-                        <span className="ml-2 text-red-600 font-semibold">✗ Wrong</span>
+                        <span className="ml-1 sm:ml-2 text-red-600 font-semibold text-xs sm:text-sm">✗ Wrong</span>
                       )}
                     </div>
                   );
@@ -244,8 +244,8 @@ const QuizDisplay = ({ quizData }) => {
 
               {/* Explanation (Show in View Mode or After Submission in Take Mode) */}
               {(quizMode === 'view' || (quizMode === 'take' && submitted)) && (
-                <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                  <p className="text-sm text-gray-700">
+                <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-l-4 border-blue-500">
+                  <p className="text-xs sm:text-sm text-gray-700">
                     <span className="font-semibold text-blue-700">Explanation: </span>
                     {question.explanation}
                   </p>
@@ -256,14 +256,14 @@ const QuizDisplay = ({ quizData }) => {
 
           {/* Submit Button (Take Quiz Mode - Before Submission) */}
           {quizMode === 'take' && !submitted && (
-            <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
-              <p className="text-gray-600 mb-4">
+            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 text-center">
+              <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
                 Answered: {Object.keys(userAnswers).length} / {quizData.quiz.length}
               </p>
               <button
                 onClick={handleSubmitQuiz}
                 disabled={Object.keys(userAnswers).length !== quizData.quiz.length}
-                className={`px-8 py-3 rounded-lg font-semibold text-white transition-colors ${
+                className={`px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold text-white transition-colors text-sm sm:text-base ${
                   Object.keys(userAnswers).length === quizData.quiz.length
                     ? 'bg-green-600 hover:bg-green-700'
                     : 'bg-gray-400 cursor-not-allowed'
@@ -280,15 +280,15 @@ const QuizDisplay = ({ quizData }) => {
 
       {/* Related Topics */}
       {quizData.related_topics?.length > 0 && (
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg shadow-md border border-purple-200">
-          <h3 className="text-xl font-semibold mb-3 text-gray-800">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 sm:p-6 rounded-lg shadow-md border border-purple-200">
+          <h3 className="text-lg sm:text-xl font-semibold mb-3 text-gray-800">
             📚 Related Topics for Further Reading
           </h3>
           <div className="flex flex-wrap gap-2">
             {quizData.related_topics.map((topic, idx) => (
               <span
                 key={idx}
-                className="px-4 py-2 bg-white text-purple-700 rounded-lg text-sm font-medium shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                className="px-3 sm:px-4 py-1 sm:py-2 bg-white text-purple-700 rounded-lg text-xs sm:text-sm font-medium shadow-sm hover:shadow-md transition-shadow cursor-pointer"
               >
                 {topic}
               </span>
