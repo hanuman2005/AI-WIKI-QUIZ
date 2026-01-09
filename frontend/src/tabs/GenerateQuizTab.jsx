@@ -12,13 +12,16 @@ const GenerateQuizTab = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Trim whitespace from URL
+    const trimmedUrl = url.trim();
+    
     // Validate URL
-    if (!url.trim()) {
+    if (!trimmedUrl) {
       setError('Please enter a Wikipedia URL');
       return;
     }
 
-    if (!url.startsWith('https://en.wikipedia.org/wiki/')) {
+    if (!trimmedUrl.startsWith('https://en.wikipedia.org/wiki/')) {
       setError('Please enter a valid English Wikipedia URL (https://en.wikipedia.org/wiki/...)');
       return;
     }
@@ -28,7 +31,7 @@ const GenerateQuizTab = () => {
     setQuizData(null);
 
     try {
-      const data = await generateQuiz(url);
+      const data = await generateQuiz(trimmedUrl);
       setQuizData(data);
       setUrl(''); // Clear input after success
     } catch (err) {
