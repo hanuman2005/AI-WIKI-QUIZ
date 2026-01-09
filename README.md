@@ -253,7 +253,6 @@ AI-WIKI-QUIZ/
 │   │       └── api.js       # API client functions
 │   ├── package.json
 │   └── vercel.json          # Vercel deployment config
-├── render.yaml              # Railway deployment config
 └── README.md
 ```
 
