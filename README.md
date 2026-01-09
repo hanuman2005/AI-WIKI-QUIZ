@@ -4,8 +4,7 @@
 
 ## 🌐 Live Demo
 
-| Platform        | URL                                                                                                      |
-| --------------- | -------------------------------------------------------------------------------------------------------- |
+| Platform        | URL           
 | **Frontend**    | [https://ai-wiki-quiz.vercel.app](https://ai-wiki-quiz.vercel.app)                                       |
 | **Backend API** | [https://ai-wiki-quiz-api-production.up.railway.app](https://ai-wiki-quiz-api-production.up.railway.app) |
 
@@ -29,15 +28,15 @@ A full-stack application that transforms Wikipedia articles into AI-generated qu
 
 ### Backend
 
-| Technology                  | Purpose              |
-| --------------------------- | -------------------- |
-| **Python 3.11+**            | Programming Language |
-| **FastAPI**                 | REST API Framework   |
-| **SQLAlchemy**              | Database ORM         |
-| **SQLite**                  | Database             |
-| **BeautifulSoup4**          | Web Scraping         |
-| **LangChain**               | LLM Framework        |
-| **Google Gemini 2.5 Flash** | AI Model             |
+| Technology                  | Purpose 
+_________________________________________         
+| **Python 3.11+**            |ProgrammingLanguage
+| **FastAPI**                 | REST API Framework
+| **SQLAlchemy**              | Database ORM      
+| **SQLite**                  | Database          
+| **BeautifulSoup4**          | Web Scraping    
+| **LangChain**               | LLM Framework     
+| **Google Gemini 2.5 Flash** | AI Model          
 
 ### Frontend
 
