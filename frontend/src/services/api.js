@@ -19,12 +19,24 @@ export const generateQuiz = async (url) => {
       body: JSON.stringify({ url }),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.detail || "Failed to generate quiz");
+    // Check if response is empty
+    const text = await response.text();
+    if (!text) {
+      throw new Error("Empty response from server. Please try again.");
     }
 
-    const data = await response.json();
+    // Parse JSON
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      throw new Error("Invalid response from server. Please try again.");
+    }
+
+    if (!response.ok) {
+      throw new Error(data.detail || "Failed to generate quiz");
+    }
+
     return data;
   } catch (error) {
     console.error("Error generating quiz:", error);
